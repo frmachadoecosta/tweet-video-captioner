@@ -1,0 +1,13 @@
+services:
+  xapi-video:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${LAN_IP:?Set LAN_IP in .env}:8501:8501"
+    environment:
+      BEARER_TOKEN: "${BEARER_TOKEN:-}"
+    volumes:
+      - app-cache:/app/cache
+
+volumes:
+  app-cache:
